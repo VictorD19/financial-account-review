@@ -1,4 +1,4 @@
-﻿namespace account_review_api.Application.DTOs
+﻿namespace Application.DTOs
 {
     public class ReportDTO
     {

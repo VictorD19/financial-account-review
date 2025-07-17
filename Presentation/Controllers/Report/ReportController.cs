@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Application.Use
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers.Report
@@ -8,16 +9,21 @@ namespace Presentation.Controllers.Report
     [ApiController]
     public class ReportController : ControllerBase
     {
-        private readonly IReportService _relatorioService;
-        public ReportController(IReportService relatorioService)
+        private readonly ProcessUploadReport _processUploadReport;
+        private readonly GetReportByID _getReportByID;
+        public ReportController(
+            ProcessUploadReport processUpload,
+            GetReportByID getReportById,
+        )
         {
-            _relatorioService = relatorioService;
+            _processUploadReport = processUpload;
+            _getReportByID = getReportById;
         }
 
         [HttpPost("upload")]
         public async Task<IActionResult> UploadRelatorio([FromForm] UploadReportDTO dto)
         {
-            var result = await _relatorioService.ProccessUpload(dto);
+            var result = await _processUploadReport.UploadFile(dto);
 
             if (!result.Success)
                 return BadRequest(result.Message);
@@ -28,7 +34,7 @@ namespace Presentation.Controllers.Report
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRelatorioById(int id)
         {
-            var relatorio = await _relatorioService.GetByID(id);
+            var relatorio = await _getReportByID.Get(id);
 
             if (relatorio == null)
                 return NotFound("Relatório não encontrado.");
