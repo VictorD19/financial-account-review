@@ -1,6 +1,5 @@
 ﻿using Application.DTOs;
-using Application.Interfaces;
-using Application.Use
+using Application.UseCases;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers.Report
@@ -11,13 +10,16 @@ namespace Presentation.Controllers.Report
     {
         private readonly ProcessUploadReport _processUploadReport;
         private readonly GetReportByID _getReportByID;
+        private readonly GetStatusFile _getStatusFile;
         public ReportController(
             ProcessUploadReport processUpload,
             GetReportByID getReportById,
+            GetStatusFile getStatusFile
         )
         {
             _processUploadReport = processUpload;
             _getReportByID = getReportById;
+            _getStatusFile = getStatusFile;
         }
 
         [HttpPost("upload")]
@@ -45,7 +47,7 @@ namespace Presentation.Controllers.Report
         [HttpGet("{id}/status")]
         public async Task<IActionResult> GetStatus(int id)
         {
-            var status = await _relatorioService.GetStatusFile(id);
+            var status = await _getStatusFile.Get(id);
 
             return Ok(new { id, status });
         }

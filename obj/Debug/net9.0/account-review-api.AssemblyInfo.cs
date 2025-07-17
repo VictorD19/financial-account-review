@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("account-review-api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9213809fd456f68815275079b62e92010cd34c6e")]
 [assembly: System.Reflection.AssemblyProductAttribute("account-review-api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("account-review-api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

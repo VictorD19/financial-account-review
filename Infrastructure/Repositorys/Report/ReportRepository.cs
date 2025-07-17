@@ -1,21 +1,47 @@
-using Application.Interfaces
-namespace Infrastruture.Repository{
-    public class ReportRepository: IReportRepository{
-         private readonly AppDbContext _context;
+using Application.Interfaces;
+using Domain.Entities;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using System;
 
-    public ReportRepository(AppDbContext context)
+namespace Infrastruture.Repository
+{
+    public class ReportRepository : IReportRepository
     {
-        _context = context;
-    }
+        private readonly AppDbContext _context;
 
- public Task<Report> Adicionar(Report report){
-   return new Report(){}
- }
-        public Task<string> GetStatusById(int reportId){
-return "";
+        public ReportRepository(AppDbContext context)
+        {
+            _context = context;
         }
-        public Task<Report> GetByID(int reportId){
-            return new Report(){}
+
+        public async Task<Report> Adicionar(Report report)
+        {
+            return new Report()
+            {
+                Id = 1,
+                FileName = "Arquivo Cirado",
+                SendDate = new DateTime(),
+                Status = "completed",
+                User = "Victor"
+            };
+        }
+
+        public async Task<string> GetStatusById(int reportId)
+        {
+            return "active";
+        }
+
+        public async Task<Report> GetByID(int reportId)
+        {
+            return new Report()
+            {
+                Id = 1,
+                FileName = "Arquivo Cirado",
+                SendDate = new DateTime(),
+                Status = "completed",
+                User = "Victor"
+            };
         }
     }
 }
