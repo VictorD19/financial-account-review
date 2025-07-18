@@ -15,33 +15,21 @@ namespace Infrastruture.Repository
             _context = context;
         }
 
-        public async Task<Report> Adicionar(Report report)
+        public async Task<int> AddAsync(Report report)
         {
-            return new Report()
-            {
-                Id = 1,
-                FileName = "Arquivo Cirado",
-                SendDate = new DateTime(),
-                Status = "completed",
-                User = "Victor"
-            };
+            _context.Reports.Add(report);
+            await _context.SaveChangesAsync();
+            return report.Id;
         }
 
-        public async Task<string> GetStatusById(int reportId)
+        public async Task<string> GetStatusByIdAsync(int reportId)
         {
-            return "active";
+            return await _context.Reports.Where(report => report.Id == reportId).Select(report => report.Status).FirstAsync();
         }
 
-        public async Task<Report> GetByID(int reportId)
+        public async Task<Report> GetByIDAsync(int reportId)
         {
-            return new Report()
-            {
-                Id = 1,
-                FileName = "Arquivo Cirado",
-                SendDate = new DateTime(),
-                Status = "completed",
-                User = "Victor"
-            };
+            return await _context.Reports.FindAsync(reportId);
         }
     }
 }

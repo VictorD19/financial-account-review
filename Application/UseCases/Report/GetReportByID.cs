@@ -15,7 +15,7 @@ namespace Application.UseCases
 
         public async Task<ReportDTO> Get(int idReport)
         {
-            Report existReport = await _reportRepository.GetByID(idReport);
+            Report existReport = await _reportRepository.GetByIDAsync(idReport);
 
             return new ReportDTO()
             {

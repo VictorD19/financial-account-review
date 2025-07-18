@@ -1,5 +1,4 @@
 using Application.Interfaces;
-using Domain.Entities;
 
 namespace Application.UseCases
 {
@@ -14,7 +13,7 @@ namespace Application.UseCases
 
         public async Task<string> Get(int idReport)
         {
-            return await _reportRepository.GetStatusById(idReport);
+            return await _reportRepository.GetStatusByIdAsync(idReport);
         }
 
     }
